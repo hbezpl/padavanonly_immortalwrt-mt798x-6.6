@@ -62,4 +62,4 @@ mv files/unm/server.key $NAME/core/server.key
 //curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/server.key -o $NAME/core/server.key
 
 # lucky
-git clone  https://github.com/gdy666/luci-app-lucky.git package/luci-app-lucky
+git clone  https://github.com/gdy666/luci-app-lucky.git package/lucky
