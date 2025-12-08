@@ -20,7 +20,7 @@ env:
   REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x-24.10
   REPO_BRANCH: openwrt-24.10-6.6
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: .config
+  CONFIG_FILE: x86_64.config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: false
@@ -33,9 +33,6 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-
     - name: Space cleanup and Initialization environment
       env:
         DEBIAN_FRONTEND: noninteractive
@@ -67,6 +64,9 @@ jobs:
         haskell: true
         large-packages: true
         swap-storage: true
+      
+    - name: Checkout
+      uses: actions/checkout@v4
 
     - name: Clone source code
       working-directory: /workdir
