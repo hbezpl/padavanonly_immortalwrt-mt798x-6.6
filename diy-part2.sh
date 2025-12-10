@@ -38,6 +38,7 @@ sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci-l
 #sed -i 's/${vendorid:+-V "$vendorid"}/${vendorid:+-V "" "-x 0x3c:$vendorid"}/g' package/network/config/netifd/files/lib/netifd/proto/dhcp.sh
 
 # 修改frp版本
+ls
 rm -rf feeds/packages/net/frp
 mv files/frp/net/frp feeds/packages/net/
 rm -rf feeds/luci/applications/luci-app-frpc
