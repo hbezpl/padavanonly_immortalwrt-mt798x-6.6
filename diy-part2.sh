@@ -39,7 +39,7 @@ sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci-l
 
 # 更换golang版本
 rm -rf feeds/packages/lang/golang
-mv files/glang feeds/packages/lang
+mv files/golang feeds/packages/lang
 
 # 修改frp版本
 rm -rf feeds/packages/net/frp
