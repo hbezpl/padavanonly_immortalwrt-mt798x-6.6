@@ -37,8 +37,11 @@ sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci-l
 #修改iptv
 #sed -i 's/${vendorid:+-V "$vendorid"}/${vendorid:+-V "" "-x 0x3c:$vendorid"}/g' package/network/config/netifd/files/lib/netifd/proto/dhcp.sh
 
+# 更换golang版本
+rm -rf feeds/packages/lang/golang
+mv files/glang feeds/packages/lang
+
 # 修改frp版本
-ls files
 rm -rf feeds/packages/net/frp
 mv files/frp/net/frp feeds/packages/net/
 rm -rf feeds/luci/applications/luci-app-frpc
