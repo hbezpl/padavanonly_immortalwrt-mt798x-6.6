@@ -10,7 +10,7 @@
 # See /LICENSE for more information.
 #
 
-name: cmcc_rax3000m-stock
+name: cmcc_rax3000m-stock-256m
 
 on:
   repository_dispatch:
