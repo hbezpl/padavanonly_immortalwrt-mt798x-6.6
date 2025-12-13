@@ -79,7 +79,7 @@ ls $NAME/core
 git clone  https://github.com/gdy666/luci-app-lucky.git package/lucky
 
 # 添加cmcc-rax3000m-256m
-mv files/256M/mt7981-cmcc-rax3000m-stock-256m.dts target/linux/mediatek/dts/
+mv files/256M/mt7981b-cmcc-rax3000m-stock-256m.dts target/linux/mediatek/dts/
 sed -i '/^TARGET_DEVICES += cmcc_rax3000m-stock$/a\
 \
 define Device/cmcc_rax3000m-stock-256m\
