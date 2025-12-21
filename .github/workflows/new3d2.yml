@@ -10,7 +10,7 @@
 # See /LICENSE for more information.
 #
 
-name: x86_64
+name: new3d2
 
 on:
   repository_dispatch:
