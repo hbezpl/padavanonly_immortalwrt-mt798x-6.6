@@ -71,13 +71,13 @@ git clone  https://github.com/gdy666/luci-app-lucky.git package/lucky
 
 # 添加cmcc-rax3000m-256m
 mv files/256M/mt7981b-cmcc-rax3000m-stock-256m.dts target/linux/mediatek/dts/
-sed -i '/^TARGET_DEVICES += cmcc_rax3000m-stock$/a\
+sed -i '/^TARGET_DEVICES += cmcc_rax3000m-nand-mtk$/a\
 \
-define Device/cmcc_rax3000m-stock-256m\
+define Device/cmcc_rax3000m-nand-mtk-256m\
   DEVICE_VENDOR := CMCC\
   DEVICE_MODEL := RAX3000M NAND 256M\
-  DEVICE_VARIANT := (H layout)\
-  DEVICE_DTS := mt7981b-cmcc-rax3000m-stock-256m\
+  DEVICE_VARIANT := (MTK 256M layout)
+  DEVICE_DTS := mt7981b-cmcc-rax3000m-nand-mtk-256m\
   DEVICE_DTS_DIR := ../dts\
   DEVICE_PACKAGES := kmod-usb3 f2fsck mkf2fs\
   BLOCKSIZE := 128k\
@@ -85,5 +85,5 @@ define Device/cmcc_rax3000m-stock-256m\
   IMAGE_SIZE := 240128k\
   IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata\
 endef\
-TARGET_DEVICES += cmcc_rax3000m-stock-256m
+TARGET_DEVICES += cmcc_rax3000m-nand-mtk
 ' target/linux/mediatek/image/filogic.mk
