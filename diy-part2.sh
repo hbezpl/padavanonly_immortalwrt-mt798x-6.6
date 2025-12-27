@@ -85,5 +85,5 @@ define Device/cmcc_rax3000m-nand-mtk-256m\
   IMAGE_SIZE := 240128k\
   IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata\
 endef\
-TARGET_DEVICES += cmcc_rax3000m-nand-mtk
+TARGET_DEVICES += cmcc_rax3000m-nand-mtk-256m
 ' target/linux/mediatek/image/filogic.mk
