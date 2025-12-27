@@ -70,7 +70,7 @@ mv files/unm/server.key $NAME/core/server.key
 git clone  https://github.com/gdy666/luci-app-lucky.git package/lucky
 
 # 添加cmcc-rax3000m-256m
-mv files/256M/mt7981b-cmcc-rax3000m-stock-256m.dts target/linux/mediatek/dts/
+mv files/256M/mt7981b-cmcc-rax3000m-nand-mtk-256m.dts target/linux/mediatek/dts/
 sed -i '/^TARGET_DEVICES += cmcc_rax3000m-nand-mtk$/a\
 \
 define Device/cmcc_rax3000m-nand-mtk-256m\
