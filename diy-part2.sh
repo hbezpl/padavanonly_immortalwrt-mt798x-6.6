@@ -76,7 +76,7 @@ sed -i '/^TARGET_DEVICES += cmcc_rax3000m-nand-mtk$/a\
 define Device/cmcc_rax3000m-nand-mtk-256m\
   DEVICE_VENDOR := CMCC\
   DEVICE_MODEL := RAX3000M NAND 256M\
-  DEVICE_VARIANT := (MTK layout)
+  DEVICE_VARIANT := (MTK layout)\
   DEVICE_DTS := mt7981b-cmcc-rax3000m-nand-mtk-256m\
   DEVICE_DTS_DIR := ../dts\
   DEVICE_PACKAGES := kmod-usb3 f2fsck mkf2fs\
