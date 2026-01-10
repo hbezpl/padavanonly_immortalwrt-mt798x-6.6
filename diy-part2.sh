@@ -102,3 +102,7 @@ git branch --set-upstream-to=origin/master master
 mv luci-app-openclash ../
 cd ../../
 rm -rf package/openclash
+
+# 修正不能web升级报错问题
+sed -i 's/rax3000m-emmc/rax3000m-emmc-mtk/g' target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-emmc-mtk.dts
+sed -i 's/rax3000m-nand/rax3000m-nand-mtk/g' target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-nand-mtk.dts
