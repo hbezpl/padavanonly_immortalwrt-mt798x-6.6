@@ -10,7 +10,7 @@
 # See /LICENSE for more information.
 #
 
-name: x86_64
+name: h3c_nx30pro
 
 on:
   repository_dispatch:
