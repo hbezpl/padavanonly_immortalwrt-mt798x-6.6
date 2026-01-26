@@ -50,12 +50,13 @@ mv files/frp/luci-app-frpc feeds/luci/applications/
 mv files/frp/luci-app-frps feeds/luci/applications/ 
 
 # 修改unblockneteasemusic
-rm -rf feeds/luci/applications/luci-app-unblockneteasemusic
-git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
-sed -i 's/+node//g' package/luci-app-unblockneteasemusic/Makefile
+# rm -rf feeds/luci/applications/luci-app-unblockneteasemusic
+# git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
+# sed -i 's/+node//g' package/luci-app-unblockneteasemusic/Makefile
+sed -i 's/+node//g' feeds/luci/applications/luci-app-unblockneteasemusic/Makefile
 
 #打包unblockneteasemusic的core核心
-NAME=$"package/luci-app-unblockneteasemusic/root/usr/share/unblockneteasemusic" && mkdir -p $NAME/core
+NAME=$"feeds/luci/applications/luci-app-unblockneteasemusic/root/usr/share/unblockneteasemusic" && mkdir -p $NAME/core
 echo "$(curl -s 'https://api.github.com/repos/UnblockNeteaseMusic/server/commits?sha=enhanced&path=precompiled' | jq -r '.[0].sha')" > "$NAME/core_local_ver"
 curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/precompiled/app.js -o $NAME/core/app.js
 curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/precompiled/bridge.js -o $NAME/core/bridge.js
@@ -89,19 +90,19 @@ TARGET_DEVICES += cmcc_rax3000m-nand-mtk-256m
 ' target/linux/mediatek/image/filogic.mk
 
 # 添加openclash
-rm -rf package/feeds/luci/luci-app-openclash
-rm -rf feeds/luci/applications/luci-app-openclash
-mkdir package/openclash
-cd package/openclash
-git init
-git remote add origin https://github.com/vernesong/OpenClash.git
-git config core.sparsecheckout true
-echo "luci-app-openclash" >> .git/info/sparse-checkout
-git pull --depth 1 origin master
-git branch --set-upstream-to=origin/master master
-mv luci-app-openclash ../
-cd ../../
-rm -rf package/openclash
+# rm -rf package/feeds/luci/luci-app-openclash
+# rm -rf feeds/luci/applications/luci-app-openclash
+# mkdir package/openclash
+# cd package/openclash
+# git init
+# git remote add origin https://github.com/vernesong/OpenClash.git
+# git config core.sparsecheckout true
+# echo "luci-app-openclash" >> .git/info/sparse-checkout
+# git pull --depth 1 origin master
+# git branch --set-upstream-to=origin/master master
+# mv luci-app-openclash ../
+# cd ../../
+# rm -rf package/openclash
 
 # 修正不能web升级报错问题
 sed -i 's/rax3000m-emmc/rax3000m-emmc-mtk/g' target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-emmc-mtk.dts
