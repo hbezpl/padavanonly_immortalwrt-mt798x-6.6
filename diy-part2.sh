@@ -50,13 +50,12 @@ mv files/frp/luci-app-frpc feeds/luci/applications/
 mv files/frp/luci-app-frps feeds/luci/applications/ 
 
 # 修改unblockneteasemusic
-# rm -rf feeds/luci/applications/luci-app-unblockneteasemusic
-# git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
-# sed -i 's/+node//g' package/luci-app-unblockneteasemusic/Makefile
-sed -i 's/+node//g' feeds/luci/applications/luci-app-unblockneteasemusic/Makefile
+rm -rf feeds/luci/applications/luci-app-unblockneteasemusic
+git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
+sed -i 's/+node//g' package/luci-app-unblockneteasemusic/Makefile
 
 #打包unblockneteasemusic的core核心
-NAME=$"feeds/luci/applications/luci-app-unblockneteasemusic/root/usr/share/unblockneteasemusic" && mkdir -p $NAME/core
+NAME=$"package/luci-app-unblockneteasemusic/root/usr/share/unblockneteasemusic" && mkdir -p $NAME/core
 echo "$(curl -s 'https://api.github.com/repos/UnblockNeteaseMusic/server/commits?sha=enhanced&path=precompiled' | jq -r '.[0].sha')" > "$NAME/core_local_ver"
 curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/precompiled/app.js -o $NAME/core/app.js
 curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/precompiled/bridge.js -o $NAME/core/bridge.js
@@ -110,4 +109,4 @@ sed -i 's/rax3000m-nand/rax3000m-nand-mtk/g' target/linux/mediatek/dts/mt7981b-c
 
 #添加上网时间控制
 git clone https://github.com/sirpdboy/luci-app-timecontrol package/luci-app-timecontrol
-sed -i 's/ci-llvm=true/ci-llvm=false/g' feeds/packages/lang/rust/Makefile
+#sed -i 's/ci-llvm=true/ci-llvm=false/g' feeds/packages/lang/rust/Makefile
