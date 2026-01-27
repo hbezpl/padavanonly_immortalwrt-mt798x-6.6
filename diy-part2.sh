@@ -90,19 +90,19 @@ TARGET_DEVICES += cmcc_rax3000m-nand-mtk-256m
 ' target/linux/mediatek/image/filogic.mk
 
 # 添加openclash
-# rm -rf package/feeds/luci/luci-app-openclash
-# rm -rf feeds/luci/applications/luci-app-openclash
-# mkdir package/openclash
-# cd package/openclash
-# git init
-# git remote add origin https://github.com/vernesong/OpenClash.git
-# git config core.sparsecheckout true
-# echo "luci-app-openclash" >> .git/info/sparse-checkout
-# git pull --depth 1 origin master
-# git branch --set-upstream-to=origin/master master
-# mv luci-app-openclash ../
-# cd ../../
-# rm -rf package/openclash
+rm -rf package/feeds/luci/luci-app-openclash
+rm -rf feeds/luci/applications/luci-app-openclash
+mkdir package/openclash
+cd package/openclash
+git init
+git remote add origin https://github.com/vernesong/OpenClash.git
+git config core.sparsecheckout true
+echo "luci-app-openclash" >> .git/info/sparse-checkout
+git pull --depth 1 origin master
+git branch --set-upstream-to=origin/master master
+mv luci-app-openclash ../
+cd ../../
+rm -rf package/openclash
 
 # 修正不能web升级报错问题
 sed -i 's/rax3000m-emmc/rax3000m-emmc-mtk/g' target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-emmc-mtk.dts
