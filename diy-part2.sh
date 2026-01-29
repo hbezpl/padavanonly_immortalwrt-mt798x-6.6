@@ -108,5 +108,5 @@ sed -i 's/rax3000m-emmc/rax3000m-emmc-mtk/g' target/linux/mediatek/dts/mt7981b-c
 sed -i 's/rax3000m-nand/rax3000m-nand-mtk/g' target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-nand-mtk.dts
 
 #添加上网时间控制
-git clone https://github.com/sirpdboy/luci-app-timecontrol package/luci-app-timecontrol
+git clone https://github.com/gaobin89/luci-app-timecontrol package/luci-app-timecontrol
 sed -i 's/download-ci-llvm=true/download-ci-llvm=false/' feeds/packages/lang/rust/Makefile
