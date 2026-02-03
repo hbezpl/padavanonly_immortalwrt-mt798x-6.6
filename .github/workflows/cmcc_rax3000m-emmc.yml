@@ -27,7 +27,7 @@ env:
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
-  DEVICE: cmcc_rax3000m-nand-mtk
+  DEVICE: cmcc_rax3000m-emmc-mtk
   
 jobs:
   build:
