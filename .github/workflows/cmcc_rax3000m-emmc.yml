@@ -27,7 +27,8 @@ env:
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
-
+  DEVICE: cmcc_rax3000m-nand-mtk
+  
 jobs:
   build:
     runs-on: ubuntu-22.04
