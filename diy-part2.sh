@@ -91,27 +91,28 @@ TARGET_DEVICES += cmcc_rax3000m-nand-mtk-256m
 # 添加h3c nx30pro 112m大分区固件
 sed -i '/^TARGET_DEVICES += h3c_magic-nx30-pro$/a\
 \
-define Device/h3c_magic-nx30-pro-nmbm-112m
-  DEVICE_VENDOR := H3C
-  DEVICE_MODEL := Magic NX30 Pro
-  DEVICE_VARIANT := (NMBM layout 112m)
-  DEVICE_DTS := mt7981b-h3c-magic-nx30-pro-nmbm-112m
-  DEVICE_DTS_DIR := ../dts
-  DEVICE_PACKAGES := kmod-mt7915e kmod-mt7981-firmware mt7981-wo-firmware
-  UBINIZE_OPTS := -E 5
-  BLOCKSIZE := 128k
-  PAGESIZE := 2048
-  IMAGE_SIZE := 114688k
-  KERNEL_IN_UBI := 1
-  IMAGES += factory.bin
-  IMAGE/factory.bin := append-ubi | check-size $$$$(IMAGE_SIZE)
-  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
+define Device/h3c_magic-nx30-pro-nmbm-112m \
+  DEVICE_VENDOR := H3C \
+  DEVICE_MODEL := Magic NX30 Pro \
+  DEVICE_VARIANT := (NMBM layout 112m)\
+  DEVICE_DTS := mt7981b-h3c-magic-nx30-pro-nmbm-112m \
+  DEVICE_DTS_DIR := ../dts \
+  DEVICE_PACKAGES := kmod-mt7915e kmod-mt7981-firmware mt7981-wo-firmware \
+  UBINIZE_OPTS := -E 5 \
+  BLOCKSIZE := 128k \
+  PAGESIZE := 2048 \
+  IMAGE_SIZE := 114688k \
+  KERNEL_IN_UBI := 1 \
+  IMAGES += factory.bin \
+  IMAGE/factory.bin := append-ubi | check-size $$$$(IMAGE_SIZE) \
+  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata \
   KERNEL = kernel-bin | lzma | \
-        fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb
+        fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb \
   KERNEL_INITRAMFS = kernel-bin | lzma | \
-        fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb with-initrd
-endef
+        fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb with-initrd \
+endef \
 TARGET_DEVICES += h3c_magic-nx30-pro-nmbm-112m
+' target/linux/mediatek/image/filogic.mk
 
 # 添加openclash
 rm -rf package/feeds/luci/luci-app-openclash
