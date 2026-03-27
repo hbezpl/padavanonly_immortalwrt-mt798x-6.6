@@ -88,6 +88,8 @@ endef\
 TARGET_DEVICES += cmcc_rax3000m-nand-mtk-256m
 ' target/linux/mediatek/image/filogic.mk
 
+# 添加h3c nx30pro 112m大分区固件
+
 # 添加openclash
 rm -rf package/feeds/luci/luci-app-openclash
 rm -rf feeds/luci/applications/luci-app-openclash
