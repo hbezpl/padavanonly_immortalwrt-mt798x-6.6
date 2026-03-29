@@ -113,3 +113,30 @@ rm -rf package/openclash
 git clone https://github.com/gaobin89/luci-app-timecontrol package/luci-app-timecontrol
 sed -i '/$(eval $(call BuildPackage,$(PKG_NAME)))/s/^/#/' package/luci-app-timecontrol/luci-app-timecontrol/Makefile
 #sed -i 's/download-ci-llvm=true/download-ci-llvm=false/' feeds/packages/lang/rust/Makefile
+
+#添加h3c_magic-nx30-pro-nmbm 112m大分区
+mv files/dts/mt7981b-cmcc-rax3000m-nand-mtk-256m.dts target/linux/mediatek/dts/
+sed -i '/^TARGET_DEVICES += h3c_magic-nx30-pro$/a \
+\
+define Device/h3c_magic-nx30-pro-nmbm-112m \
+  DEVICE_VENDOR := H3C \
+  DEVICE_MODEL := Magic NX30 Pro 112m\
+  DEVICE_VARIANT := (NMBM layout) \
+  DEVICE_DTS := mt7981b-h3c-magic-nx30-pro-nmbm-112m \
+  DEVICE_DTS_DIR := ../dts \
+  DEVICE_PACKAGES := kmod-mt7915e kmod-mt7981-firmware mt7981-wo-firmware \
+  UBINIZE_OPTS := -E 5 \
+  BLOCKSIZE := 128k \
+  PAGESIZE := 2048 \
+  IMAGE_SIZE := 114688k \
+  KERNEL_IN_UBI := 1 \
+  IMAGES += factory.bin \
+  IMAGE/factory.bin := append-ubi | check-size $$$$(IMAGE_SIZE) \
+  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata \
+  KERNEL = kernel-bin | lzma | \
+        fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb \
+  KERNEL_INITRAMFS = kernel-bin | lzma | \
+        fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb with-initrd \
+endef \
+TARGET_DEVICES += h3c_magic-nx30-pro-nmbm
+' target/linux/mediatek/image/filogic.mk
