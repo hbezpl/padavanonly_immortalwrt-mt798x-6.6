@@ -116,4 +116,5 @@ sed -i '/$(eval $(call BuildPackage,$(PKG_NAME)))/s/^/#/' package/luci-app-timec
 
 #修改h3c_magic-nx30-pro-nmbm 112m大分区
 sed -i '/^define Device\/h3c_magic-nx30-pro-nmbm$/,/^endef$/{s/IMAGE_SIZE := 65536k/IMAGE_SIZE := 114688k/}' target/linux/mediatek/image/filogic.mk
-
+sed -i 's/model = "H3C Magic NX30 Pro (NMBM layout)"/model = "H3C Magic NX30 Pro 112m (NMBM layout)"/' target/linux/mediatek/dts/mt7981b-h3c-magic-nx30-pro-nmbm.dts
+sed -i '/\/\* yaffs partition \*\//d; /label = "pdt_data"/,/^\s*};$/d; /label = "pdt_data_1"/,/^\s*};$/d; /label = "exp"/,/^\s*};$/d; /label = "plugin"/,/^\s*};$/d' target/linux/mediatek/dts/mt7981b-h3c-magic-nx30-pro.dts
