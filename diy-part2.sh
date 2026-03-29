@@ -115,4 +115,5 @@ sed -i '/$(eval $(call BuildPackage,$(PKG_NAME)))/s/^/#/' package/luci-app-timec
 #sed -i 's/download-ci-llvm=true/download-ci-llvm=false/' feeds/packages/lang/rust/Makefile
 
 #修改h3c_magic-nx30-pro-nmbm 112m大分区
+sed -i '/^define Device\/h3c_magic-nx30-pro-nmbm$/,/^endef$/{s/IMAGE_SIZE := 65536k/IMAGE_SIZE := 114688k/}' target/linux/mediatek/image/filogic.mk
 
