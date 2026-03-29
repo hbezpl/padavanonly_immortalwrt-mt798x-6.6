@@ -88,6 +88,7 @@ define Device/cmcc_rax3000m-nand-mtk-256m \
 endef \
 TARGET_DEVICES += cmcc_rax3000m-nand-mtk-256m
 ' target/linux/mediatek/image/filogic.mk
+sed -i '/^define Device\/cmcc_rax3000m-nand-mtk$/,/^endef$/{/DEVICE_PACKAGES := kmod-usb3 f2fsck mkf2fs/a\  SUPPORTED_DEVICES += cmcc,rax3000m-nand}' target/linux/mediatek/image/filogic.mk
 
 # 添加openclash
 rm -rf package/feeds/luci/luci-app-openclash
