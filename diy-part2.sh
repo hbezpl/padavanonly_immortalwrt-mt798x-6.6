@@ -122,7 +122,7 @@ define Device/h3c_magic-nx30-pro-nmbm-112m \
   DEVICE_VENDOR := H3C \
   DEVICE_MODEL := Magic NX30 Pro 112m\
   DEVICE_VARIANT := (NMBM layout) \
-  DEVICE_DTS := mt7981b-h3c-magic-nx30-pro-nmbm-112m \
+  DEVICE_DTS := mt7981b-h3c-magic-nx30-pro-nmbm \
   DEVICE_DTS_DIR := ../dts \
   DEVICE_PACKAGES := kmod-mt7915e kmod-mt7981-firmware mt7981-wo-firmware \
   UBINIZE_OPTS := -E 5 \
