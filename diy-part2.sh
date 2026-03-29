@@ -70,7 +70,7 @@ mv files/unm/server.key $NAME/core/server.key
 git clone  https://github.com/gdy666/luci-app-lucky.git package/lucky
 
 # 添加cmcc-rax3000m-256m
-mv files/256M/mt7981b-cmcc-rax3000m-nand-mtk-256m.dts target/linux/mediatek/dts/
+mv files/dts/mt7981b-cmcc-rax3000m-nand-mtk-256m.dts target/linux/mediatek/dts/
 sed -i '/^TARGET_DEVICES += cmcc_rax3000m-nand-mtk$/a \
 \
 define Device/cmcc_rax3000m-nand-mtk-256m \
@@ -115,7 +115,7 @@ sed -i '/$(eval $(call BuildPackage,$(PKG_NAME)))/s/^/#/' package/luci-app-timec
 #sed -i 's/download-ci-llvm=true/download-ci-llvm=false/' feeds/packages/lang/rust/Makefile
 
 #添加h3c_magic-nx30-pro-nmbm 112m大分区
-mv files/dts/mt7981b-cmcc-rax3000m-nand-mtk-256m.dts target/linux/mediatek/dts/
+mv files/dts/mt7981b-h3c-magic-nx30-pro-nmbm-112m.dts target/linux/mediatek/dts/
 sed -i '/^TARGET_DEVICES += h3c_magic-nx30-pro$/a \
 \
 define Device/h3c_magic-nx30-pro-nmbm-112m \
