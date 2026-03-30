@@ -69,21 +69,21 @@ mv files/unm/server.key $NAME/core/server.key
 git clone  https://github.com/gdy666/luci-app-lucky.git package/lucky
 
 # 添加cmcc-rax3000m-256m
-sed -i '/^TARGET_DEVICES += cmcc_rax3000m-nand-mtk$/a \
+sed -i '/^TARGET_DEVICES += cmcc_rax3000m-nand-mtk$/a\
 \
-define Device/cmcc_rax3000m-nand-mtk-256m \
-  DEVICE_VENDOR := CMCC \
-  DEVICE_MODEL := RAX3000M NAND 256M \
-  DEVICE_VARIANT := (MTK layout) \
-  DEVICE_DTS := mt7981b-cmcc-rax3000m-nand-mtk-256m \
-  DEVICE_DTS_DIR := ../dts \
-  DEVICE_PACKAGES := kmod-usb3 f2fsck mkf2fs \
-  SUPPORTED_DEVICES += cmcc,rax3000m-nand \
-  BLOCKSIZE := 128k \
-  PAGESIZE := 2048 \
-  IMAGE_SIZE := 240128k \
-  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata \
-endef \
+define Device/cmcc_rax3000m-nand-mtk-256m\
+  DEVICE_VENDOR := CMCC\
+  DEVICE_MODEL := RAX3000M NAND 256M\
+  DEVICE_VARIANT := (MTK layout)\
+  DEVICE_DTS := mt7981b-cmcc-rax3000m-nand-mtk-256m\
+  DEVICE_DTS_DIR := ../dts\
+  DEVICE_PACKAGES := kmod-usb3 f2fsck mkf2fs\
+  SUPPORTED_DEVICES += cmcc,rax3000m-nand\
+  BLOCKSIZE := 128k\
+  PAGESIZE := 2048\
+  IMAGE_SIZE := 240128k\
+  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata\
+endef\
 TARGET_DEVICES += cmcc_rax3000m-nand-mtk-256m
 ' target/linux/mediatek/image/filogic.mk
 mv files/dts/mt7981b-cmcc-rax3000m-nand-mtk-256m.dts target/linux/mediatek/dts/
@@ -123,7 +123,7 @@ define Device/h3c_magic-nx30-pro-nmbm-112m\
   DEVICE_DTS := mt7981b-h3c-magic-nx30-pro-nmbm-112m\
   DEVICE_DTS_DIR := ../dts\
   DEVICE_PACKAGES := kmod-mt7915e kmod-mt7981-firmware mt7981-wo-firmware\
-  SUPPORTED_DEVICES += h3c,magic-nx30-pro-nmbm \
+  SUPPORTED_DEVICES += h3c,magic-nx30-pro-nmbm\
   UBINIZE_OPTS := -E 5\
   BLOCKSIZE := 128k\
   PAGESIZE := 2048\
