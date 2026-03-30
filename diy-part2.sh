@@ -114,7 +114,27 @@ sed -i '/$(eval $(call BuildPackage,$(PKG_NAME)))/s/^/#/' package/luci-app-timec
 #sed -i 's/download-ci-llvm=true/download-ci-llvm=false/' feeds/packages/lang/rust/Makefile
 
 #修改h3c_magic-nx30-pro-nmbm 112m大分区
-sed -i '/^define Device\/h3c_magic-nx30-pro-nmbm$/,/^endef$/{s/IMAGE_SIZE := 65536k/IMAGE_SIZE := 114688k/}' target/linux/mediatek/image/filogic.mk
-sed -i 's/model = "H3C Magic NX30 Pro (NMBM layout)"/model = "H3C Magic NX30 Pro 112m (NMBM layout)"/' target/linux/mediatek/dts/mt7981b-h3c-magic-nx30-pro-nmbm.dts
-sed -i 's/reg = <0x0580000 0x4000000>/reg = <0x0580000 0x7000000>/' target/linux/mediatek/dts/mt7981b-h3c-magic-nx30-pro.dts
-sed -i '155,179d' target/linux/mediatek/dts/mt7981b-h3c-magic-nx30-pro.dts
+sed -i '/^TARGET_DEVICES += h3c_magic-nx30-pro-nmbm$/a\
+\
+define Device/h3c_magic-nx30-pro-nmbm-112m\
+  DEVICE_VENDOR := H3C\
+  DEVICE_MODEL := Magic NX30 Pro\
+  DEVICE_VARIANT := (NMBM 112m layout)\
+  DEVICE_DTS := mt7981b-h3c-magic-nx30-pro-nmbm-112m\
+  DEVICE_DTS_DIR := ../dts\
+  DEVICE_PACKAGES := kmod-mt7915e kmod-mt7981-firmware mt7981-wo-firmware\
+  UBINIZE_OPTS := -E 5\
+  BLOCKSIZE := 128k\
+  PAGESIZE := 2048\
+  IMAGE_SIZE := 114688k\
+  KERNEL_IN_UBI := 1\
+  IMAGES += factory.bin\
+  IMAGE/factory.bin := append-ubi | check-size $$$$(IMAGE_SIZE)\
+  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata\
+  KERNEL = kernel-bin | lzma | \
+        fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb\
+  KERNEL_INITRAMFS = kernel-bin | lzma | \
+        fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb with-initrd\
+endef\
+TARGET_DEVICES += h3c_magic-nx30-pro-nmbm-112m
+' target/linux/mediatek/image/filogic.mk
