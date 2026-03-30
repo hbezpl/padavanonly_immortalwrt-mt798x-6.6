@@ -27,6 +27,7 @@ env:
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
+  DEVICE: h3c_nx30pro-112m
 
 jobs:
   build:
