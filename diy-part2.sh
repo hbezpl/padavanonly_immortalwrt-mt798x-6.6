@@ -69,7 +69,6 @@ mv files/unm/server.key $NAME/core/server.key
 git clone  https://github.com/gdy666/luci-app-lucky.git package/lucky
 
 # 添加cmcc-rax3000m-256m
-mv files/dts/mt7981b-cmcc-rax3000m-nand-mtk-256m.dts target/linux/mediatek/dts/
 sed -i '/^TARGET_DEVICES += cmcc_rax3000m-nand-mtk$/a \
 \
 define Device/cmcc_rax3000m-nand-mtk-256m \
@@ -87,6 +86,7 @@ define Device/cmcc_rax3000m-nand-mtk-256m \
 endef \
 TARGET_DEVICES += cmcc_rax3000m-nand-mtk-256m
 ' target/linux/mediatek/image/filogic.mk
+mv files/dts/mt7981b-cmcc-rax3000m-nand-mtk-256m.dts target/linux/mediatek/dts/
 sed -i '/^define Device\/cmcc_rax3000m-nand-mtk$/,/^endef$/{/DEVICE_PACKAGES := kmod-usb3 f2fsck mkf2fs/a\  SUPPORTED_DEVICES += cmcc,rax3000m-nand}' target/linux/mediatek/image/filogic.mk
 
 # 添加openclash
@@ -138,3 +138,5 @@ define Device/h3c_magic-nx30-pro-nmbm-112m\
 endef\
 TARGET_DEVICES += h3c_magic-nx30-pro-nmbm-112m
 ' target/linux/mediatek/image/filogic.mk
+mv files/dts/mt7981b-h3c-magic-nx30-pro-nmbm-112m.dts target/linux/mediatek/dts/
+mv files/dts/mt7981b-h3c-magic-nx30-pro-112m.dts target/linux/mediatek/dts/
