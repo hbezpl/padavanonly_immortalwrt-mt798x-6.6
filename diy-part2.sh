@@ -90,9 +90,6 @@ mv files/dts/mt7981b-cmcc-rax3000m-nand-mtk-256m.dts target/linux/mediatek/dts/
 sed -i 's/define Device\/cmcc_rax3000m-nand-mtk/define Device\/cmcc_rax3000m-nand/' target/linux/mediatek/image/filogic.mk
 sed -i 's/TARGET_DEVICES += cmcc_rax3000m-nand-mtk/TARGET_DEVICES += cmcc_rax3000m-nand/' target/linux/mediatek/image/filogic.mk
 
-#sed -i '/^define Device\/cmcc_rax3000m-nand-mtk$/,/^endef$/s/^\(  DEVICE_PACKAGES := kmod-usb3 f2fsck mkf2fs\)$/\1\n  SUPPORTED_DEVICES := cmcc,rax3000m-nand/' target/linux/mediatek/image/filogic.mk
-#sed -i 's/SUPPORTED_DEVICES += cmcc,rax3000m-emmc/SUPPORTED_DEVICES := cmcc,rax3000m-emmc/' target/linux/mediatek/image/filogic.mk
-
 # 添加openclash
 rm -rf package/feeds/luci/luci-app-openclash
 rm -rf feeds/luci/applications/luci-app-openclash
