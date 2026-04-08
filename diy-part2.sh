@@ -86,8 +86,7 @@ endef\
 TARGET_DEVICES += cmcc_rax3000m-nand-mtk-256m
 ' target/linux/mediatek/image/filogic.mk
 mv files/dts/mt7981b-cmcc-rax3000m-nand-mtk-256m.dts target/linux/mediatek/dts/
-sed -i 's/define Device\/cmcc_rax3000m-nand-mtk/define Device\/cmcc_rax3000m-nand/' target/linux/mediatek/image/filogic.mk
-sed -i 's/TARGET_DEVICES += cmcc_rax3000m-nand-mtk/TARGET_DEVICES += cmcc_rax3000m-nand/' target/linux/mediatek/image/filogic.mk
+sed -i 's/compatible = "cmcc,rax3000m-nand", "mediatek,mt7981"/compatible = "cmcc,rax3000m-nand-mtk-256m", "cmcc,rax3000m-nand", "mediatek,mt7981"/g' target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-nand-mtk.dts
 sed -i 's/compatible = "cmcc,rax3000m-emmc", "mediatek,mt7981"/compatible = "cmcc,rax3000m-emmc-mtk", "cmcc,rax3000m-emmc", "mediatek,mt7981"/g' target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-emmc-mtk.dts
 
 # 添加openclash
