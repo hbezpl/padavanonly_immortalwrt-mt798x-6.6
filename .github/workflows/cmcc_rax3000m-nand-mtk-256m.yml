@@ -176,7 +176,7 @@ jobs:
           keep_minimum_runs: 3
 
       - name: Remove old Releases
-        uses: georgyo/delete-older-releases@v3
+        uses: dev-drprasad/delete-older-releases@v0.2.0
         if: env.UPLOAD_RELEASE == 'true' && steps.compile.outputs.status == 'success' && !cancelled()
         continue-on-error: true
         with:
