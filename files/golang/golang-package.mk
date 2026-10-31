@@ -232,7 +232,6 @@ GO_PKG_DEFAULT_LDFLAGS= \
 	-extldflags '$(patsubst -z%,-Wl$(comma)-z$(comma)%,$(TARGET_LDFLAGS))'
 
 GO_PKG_CUSTOM_LDFLAGS= \
-	-checklinkname=0 \
 	$(GO_PKG_LDFLAGS) \
 	$(patsubst %,-X %,$(GO_PKG_LDFLAGS_X))
 
