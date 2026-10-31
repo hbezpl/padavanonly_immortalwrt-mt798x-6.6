@@ -114,3 +114,4 @@ rm -rf feeds/packages/utils/docker/Makefile
 rm -rf feeds/packages/utils/containerd/Makefile
 mv files/docker/Makefile feeds/packages/utils/docker/
 mv files/containerd/Makefile feeds/packages/utils/containerd/
+rm -rf files
