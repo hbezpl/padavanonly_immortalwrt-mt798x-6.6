@@ -108,3 +108,9 @@ rm -rf package/openclash
 git clone https://github.com/gaobin89/luci-app-timecontrol package/luci-app-timecontrol
 sed -i '/$(eval $(call BuildPackage,$(PKG_NAME)))/s/^/#/' package/luci-app-timecontrol/luci-app-timecontrol/Makefile
 #sed -i 's/download-ci-llvm=true/download-ci-llvm=false/' feeds/packages/lang/rust/Makefile
+
+#修改docker
+rm -rf feeds/packages/utils/docker/Makefile
+rm -rf feeds/packages/utils/containerd/Makefile
+mv files/docker/Makefile feeds/packages/utils/docker/
+mv files/containerd/Makefile feeds/packages/utils/containerd/
