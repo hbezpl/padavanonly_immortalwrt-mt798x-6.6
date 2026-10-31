@@ -109,9 +109,83 @@ git clone https://github.com/gaobin89/luci-app-timecontrol package/luci-app-time
 sed -i '/$(eval $(call BuildPackage,$(PKG_NAME)))/s/^/#/' package/luci-app-timecontrol/luci-app-timecontrol/Makefile
 #sed -i 's/download-ci-llvm=true/download-ci-llvm=false/' feeds/packages/lang/rust/Makefile
 
-#修改docker
-rm -rf feeds/packages/utils/docker/Makefile
-rm -rf feeds/packages/utils/containerd/Makefile
-mv files/docker/Makefile feeds/packages/utils/docker/
-mv files/containerd/Makefile feeds/packages/utils/containerd/
 rm -rf files
+
+
+# 修复 Go 1.23+ linkname 检查导致 containerd/docker 编译失败
+echo ">>> [diy] applying -checklinkname=0 workaround"
+
+python3 - <<'PYEOF'
+import pathlib
+
+def patch_golang():
+    p = pathlib.Path("feeds/packages/lang/golang/golang-package.mk")
+    if not p.exists():
+        print("[SKIP] golang-package.mk not found"); return
+    s = p.read_text()
+    if "checklinkname" in s:
+        print("[OK] golang-package.mk already patched"); return
+    p.write_text(s.rstrip() + "\n\nGO_PKG_CUSTOM_LDFLAGS += -checklinkname=0\n")
+    print("[OK] golang-package.mk patched")
+
+def patch_containerd():
+    p = pathlib.Path("feeds/packages/utils/containerd/Makefile")
+    if not p.exists():
+        print("[SKIP] containerd Makefile not found"); return
+    s = p.read_text()
+    if "checklinkname" in s:
+        print("[OK] containerd already patched"); return
+
+    block = (
+        "# Go 1.23+ linkname workaround\n"
+        "define Build/Compile\n"
+        "\tsed -i \"s/-ldflags '\\([^']*\\)'/-ldflags '\\1 -checklinkname=0'/g\" \\\n"
+        "\t\t$(PKG_BUILD_DIR)/$(MAKE_PATH)/Makefile\n"
+        "\t$(call Build/Compile/Default)\n"
+        "endef\n"
+    )
+    old = ("# Reset golang-package.mk overrides so we can use the Makefile\n"
+           "Build/Compile=$(call Build/Compile/Default)\n")
+
+    if old in s:
+        s = s.replace(old, block, 1); print("[OK] containerd patched (in place)")
+    elif "$(eval $(call BuildPackage,containerd))" in s:
+        s = s.replace("$(eval $(call BuildPackage,containerd))",
+                      block + "\n$(eval $(call BuildPackage,containerd))", 1)
+        print("[OK] containerd patched (before BuildPackage)")
+    else:
+        s = s.rstrip() + "\n\n" + block; print("[WARN] containerd patched (appended)")
+    p.write_text(s)
+
+def patch_docker():
+    p = pathlib.Path("feeds/packages/utils/docker/Makefile")
+    if not p.exists():
+        print("[SKIP] docker Makefile not found"); return
+    s = p.read_text()
+    if "checklinkname" in s:
+        print("[OK] docker already patched"); return
+
+    old = "\t\tcd $(PKG_BUILD_DIR); \\\n\t\t$(GO_PKG_VARS) \\\n"
+    new = (
+        "\t\tcd $(PKG_BUILD_DIR); \\\n"
+        "\t\tsed -i -e \"s/-ldflags \\\"/-ldflags \\\"-checklinkname=0 /\" \\\n"
+        "\t\t\t-e \"s/-ldflags '/-ldflags '-checklinkname=0 /\" \\\n"
+        "\t\t\tscripts/build/binary; \\\n"
+        "\t\t$(GO_PKG_VARS) \\\n"
+    )
+    if old in s:
+        s = s.replace(old, new, 1); print("[OK] docker patched (in place)")
+    else:
+        print("[WARN] docker patch pattern not found, skip")
+    p.write_text(s)
+
+patch_golang()
+patch_containerd()
+patch_docker()
+PYEOF
+
+echo ">>> [diy] verify:"
+grep -n "checklinkname" \
+  feeds/packages/lang/golang/golang-package.mk \
+  feeds/packages/utils/containerd/Makefile \
+  feeds/packages/utils/docker/Makefile || true
