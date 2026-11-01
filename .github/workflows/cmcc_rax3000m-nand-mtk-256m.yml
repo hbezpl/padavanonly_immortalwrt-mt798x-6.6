@@ -15,11 +15,6 @@ name: cmcc_rax3000m-nand-mtk-256m
 on:
   repository_dispatch:
   workflow_dispatch:
-    inputs:
-      ssh:
-        description: 'SSH connection to Actions'
-        required: false
-        default: 'false'
 
 env:
   REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x-24.10
@@ -110,11 +105,6 @@ jobs:
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
-
-    - name: SSH connection to Actions
-      uses: mxschmitt/action-tmate@v3
-      if: ${{ github.event.inputs.ssh == 'true' }}
-      timeout-minutes: 30
 
     - name: Compile the firmware
       id: compile
