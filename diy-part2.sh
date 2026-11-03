@@ -41,6 +41,8 @@ rm -rf feeds/packages/lang/golang
 mv files/golang feeds/packages/lang
 
 # 更换docker版本
+rm -rf feeds/packages/utils/runc
+mv files/docker/runc feeds/packages/utils/
 rm -rf feeds/packages/utils/containerd
 mv files/docker/containerd feeds/packages/utils/
 rm -rf feeds/packages/utils/docker-compose
@@ -128,3 +130,4 @@ rm -rf files/dts
 rm -rf files/frp
 rm -rf files/golang
 rm -rf files/unm
+rm -rf files/runc
