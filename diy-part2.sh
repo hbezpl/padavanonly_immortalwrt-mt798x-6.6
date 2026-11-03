@@ -130,4 +130,3 @@ rm -rf files/dts
 rm -rf files/frp
 rm -rf files/golang
 rm -rf files/unm
-rm -rf files/runc
