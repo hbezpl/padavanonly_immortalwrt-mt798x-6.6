@@ -38,31 +38,31 @@ sed -i 's/${vendorid:+-V "$vendorid"}/${vendorid:+-V "" "-x 0x3c:$vendorid"}/g' 
 
 # 更换golang版本
 rm -rf feeds/packages/lang/golang
-mv files/golang feeds/packages/lang
+mv files/diy/golang feeds/packages/lang
 
 # 更换docker版本
 rm -rf feeds/packages/utils/runc
-mv files/docker/runc feeds/packages/utils/
+mv files/diy/docker/runc feeds/packages/utils/
 rm -rf feeds/packages/utils/containerd
-mv files/docker/containerd feeds/packages/utils/
+mv files/diy/docker/containerd feeds/packages/utils/
 rm -rf feeds/packages/utils/docker-compose
-mv files/docker/docker-compose feeds/packages/utils/
+mv files/diy/docker/docker-compose feeds/packages/utils/
 rm -rf feeds/packages/utils/docker
-mv files/docker/docker feeds/packages/utils/
+mv files/diy/docker/docker feeds/packages/utils/
 rm -rf feeds/packages/utils/dockerd
-mv files/docker/dockerd feeds/packages/utils/
+mv files/diy/docker/dockerd feeds/packages/utils/
 rm -rf feeds/luci/applications/luci-app-docker
-mv files/docker/luci-app-docker feeds/luci/applications/
+mv files/diy/docker/luci-app-docker feeds/luci/applications/
 rm -rf feeds/luci/applications/luci-app-dockerman
-mv files/docker/luci-app-dockerman feeds/luci/applications/
+mv files/diy/docker/luci-app-dockerman feeds/luci/applications/
 
 # 修改frp版本
 rm -rf feeds/packages/net/frp
-mv files/frp/frp feeds/packages/net/
+mv files/diy/frp/frp feeds/packages/net/
 rm -rf feeds/luci/applications/luci-app-frpc
+mv files/diy/frp/luci-app-frpc feeds/luci/applications/
 rm -rf feeds/luci/applications/luci-app-frps
-mv files/frp/luci-app-frpc feeds/luci/applications/
-mv files/frp/luci-app-frps feeds/luci/applications/ 
+mv files/diy/frp/luci-app-frps feeds/luci/applications/ 
 
 # 修改unblockneteasemusic
 rm -rf feeds/luci/applications/luci-app-unblockneteasemusic
@@ -74,9 +74,9 @@ NAME=$"package/luci-app-unblockneteasemusic/root/usr/share/unblockneteasemusic" 
 echo "$(curl -s 'https://api.github.com/repos/UnblockNeteaseMusic/server/commits?sha=enhanced&path=precompiled' | jq -r '.[0].sha')" > "$NAME/core_local_ver"
 curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/precompiled/app.js -o $NAME/core/app.js
 curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/precompiled/bridge.js -o $NAME/core/bridge.js
-mv files/unm/ca.crt $NAME/core/ca.crt
-mv files/unm/server.crt $NAME/core/server.crt
-mv files/unm/server.key $NAME/core/server.key
+mv files/diy/unm/ca.crt $NAME/core/ca.crt
+mv files/diy/unm/server.crt $NAME/core/server.crt
+mv files/diy/unm/server.key $NAME/core/server.key
 #curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/ca.crt -o $NAME/core/ca.crt
 #curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/server.crt -o $NAME/core/server.crt
 #curl -L https://github.com/UnblockNeteaseMusic/server/raw/enhanced/server.key -o $NAME/core/server.key
@@ -101,7 +101,7 @@ define Device/cmcc_rax3000m-nand-mtk-256m\
 endef\
 TARGET_DEVICES += cmcc_rax3000m-nand-mtk-256m
 ' target/linux/mediatek/image/filogic.mk
-mv files/dts/mt7981b-cmcc-rax3000m-nand-mtk-256m.dts target/linux/mediatek/dts/
+mv files/diy/dts/mt7981b-cmcc-rax3000m-nand-mtk-256m.dts target/linux/mediatek/dts/
 sed -i 's/compatible = "cmcc,rax3000m-nand", "mediatek,mt7981"/compatible = "cmcc,rax3000m-nand-mtk", "cmcc,rax3000m-nand", "mediatek,mt7981"/g' target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-nand-mtk.dts
 sed -i 's/compatible = "cmcc,rax3000m-emmc", "mediatek,mt7981"/compatible = "cmcc,rax3000m-emmc-mtk", "cmcc,rax3000m-emmc", "mediatek,mt7981"/g' target/linux/mediatek/dts/mt7981b-cmcc-rax3000m-emmc-mtk.dts
 
