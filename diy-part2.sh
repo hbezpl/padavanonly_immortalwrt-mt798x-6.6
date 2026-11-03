@@ -123,4 +123,8 @@ git clone https://github.com/gaobin89/luci-app-timecontrol package/luci-app-time
 #sed -i '/$(eval $(call BuildPackage,$(PKG_NAME)))/s/^/#/' package/luci-app-timecontrol/luci-app-timecontrol/Makefile
 #sed -i 's/download-ci-llvm=true/download-ci-llvm=false/' feeds/packages/lang/rust/Makefile
 
-rm -rf files
+rm -rf files/docker
+rm -rf files/dts
+rm -rf files/frp
+rm -rf files/golang
+rm -rf files/unm
