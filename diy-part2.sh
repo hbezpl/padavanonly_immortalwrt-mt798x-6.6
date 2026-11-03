@@ -56,6 +56,8 @@ mv files/diy/docker/luci-app-docker feeds/luci/applications/
 rm -rf feeds/luci/applications/luci-app-dockerman
 mv files/diy/docker/luci-app-dockerman feeds/luci/applications/
 
+chmod +x feeds/packages/utils/dockerd/git-short-commit.sh
+
 # 修改frp版本
 rm -rf feeds/packages/net/frp
 mv files/diy/frp/frp feeds/packages/net/
