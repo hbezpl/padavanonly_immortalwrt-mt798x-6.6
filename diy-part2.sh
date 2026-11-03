@@ -40,6 +40,20 @@ sed -i 's/${vendorid:+-V "$vendorid"}/${vendorid:+-V "" "-x 0x3c:$vendorid"}/g' 
 rm -rf feeds/packages/lang/golang
 mv files/golang feeds/packages/lang
 
+# 更换docker版本
+rm -rf feeds/packages/utils/containerd
+mv files/docker/containerd feeds/packages/utils
+rm -rf feeds/packages/utils/docker-compose
+mv files/docker/docker-compose feeds/packages/utils
+rm -rf feeds/packages/utils/docker
+mv files/docker/docker feeds/packages/utils
+rm -rf feeds/packages/utils/dockerd
+mv files/docker/dockerd feeds/packages/utils
+rm -rf feeds/luci/applications/luci-app-docker
+mv files/docker/luci-app-docker feeds/luci/applications/
+rm -rf feeds/luci/applications/luci-app-dockerman
+mv files/docker/luci-app-dockerman feeds/luci/applications/
+
 # 修改frp版本
 rm -rf feeds/packages/net/frp
 mv files/frp/frp feeds/packages/net/
