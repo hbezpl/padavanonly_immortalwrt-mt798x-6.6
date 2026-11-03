@@ -42,13 +42,13 @@ mv files/golang feeds/packages/lang
 
 # 更换docker版本
 rm -rf feeds/packages/utils/containerd
-mv files/docker/containerd feeds/packages/utils
+mv files/docker/containerd feeds/packages/utils/
 rm -rf feeds/packages/utils/docker-compose
-mv files/docker/docker-compose feeds/packages/utils
+mv files/docker/docker-compose feeds/packages/utils/
 rm -rf feeds/packages/utils/docker
-mv files/docker/docker feeds/packages/utils
+mv files/docker/docker feeds/packages/utils/
 rm -rf feeds/packages/utils/dockerd
-mv files/docker/dockerd feeds/packages/utils
+mv files/docker/dockerd feeds/packages/utils/
 rm -rf feeds/luci/applications/luci-app-docker
 mv files/docker/luci-app-docker feeds/luci/applications/
 rm -rf feeds/luci/applications/luci-app-dockerman
